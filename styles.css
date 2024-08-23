@@ -26,21 +26,17 @@ h1 {
     color: #ffffff;
 }
 
-.subtitle {
-    font-size: 16px; /* Dimensione del testo per il sottotitolo */
-    color: #cccccc; /* Colore più chiaro per il sottotitolo */
-}
-
-/* Stile dei pulsanti */
-.buttons {
+/* Stile dei pulsanti nella pagina principale e nelle pagine delle categorie */
+.buttons,
+.category-buttons {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column; /* Disposizione in colonna */
+    align-items: center;
     margin-top: 20px;
 }
 
 button {
-    padding: 15px 30px;
-    font-size: 18px; /* Dimensione del testo */
+    font-size: 16px; /* Dimensione del testo */
     font-weight: bold; /* Testo in grassetto */
     letter-spacing: 1px; /* Spaziatura tra le lettere */
     text-transform: uppercase; /* Testo maiuscolo */
@@ -48,16 +44,28 @@ button {
     border-radius: 5px;
     cursor: pointer;
     color: #ffffff;
+    width: 200px; /* Larghezza fissa per tutti i pulsanti */
+    height: 50px; /* Altezza fissa per tutti i pulsanti */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animazione */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Ombra del pulsante */
+    margin: 10px 0; /* Spazio tra i pulsanti in colonna */
+    display: flex;
+    align-items: center; /* Allinea verticalmente il testo */
+    justify-content: center; /* Allinea orizzontalmente il testo */
 }
 
+/* Pulsanti specifici per le pagine principali */
 button.entrate {
     background-color: #28a745; /* Verde per Entrate */
 }
 
 button.uscite {
     background-color: #dc3545; /* Rosso per Uscite */
+}
+
+/* Pulsanti per categorie */
+.category {
+    background-color: #343a40; /* Colore di sfondo dei pulsanti */
 }
 
 button:hover {

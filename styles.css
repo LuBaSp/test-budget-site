@@ -27,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 20px 0; /* Aggiungi margine per creare spazio sopra e sotto il contenitore */
-    min-height: 100vh; /* Imposta l’altezza minima del contenitore per garantire che non sia troppo piccolo */
+    min-height: 80vh; /* Imposta l’altezza minima del contenitore per garantire che non sia troppo piccolo */
 }
 
 /* Stile del titolo della pagina */

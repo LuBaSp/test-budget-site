@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pagina-title">Registrazione - Budget Management</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .notification {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body class="registrazione-page">
     <div class="container">
@@ -35,7 +48,9 @@
             
             <button type="submit" class="submit-button">Registra</button>
         </form>
-        
+
+        <!-- Notifica di successo -->
+        <div id="notification" class="notification">Movimento registrato con successo!</div>
         
         <!-- Link per tornare alla pagina precedente -->
         <a href="#" class="back-button" id="back-link">INDIETRO</a>
@@ -67,10 +82,12 @@
         amounts.forEach(amount => {
             const button = document.createElement('a');
             button.href = '#';
-            button.textContent = amount;
+            button.textContent = amount; // Mostra il testo completo sul pulsante
             button.className = 'amount-button';
             button.addEventListener('click', function() {
-                document.getElementById('importo').value = amount.split(' - ')[1]; // Estrai l'importo dal testo del pulsante
+                // Estrai solo la parte numerica dall'importo
+                const numericValue = amount.match(/[\d,.]+/)[0];
+                document.getElementById('importo').value = numericValue;
             });
             amountButtonsContainer.appendChild(button);
         });
@@ -133,7 +150,13 @@
         localStorage.setItem('transactions', JSON.stringify(transactions));
 
         // Mostra un messaggio di successo e resetta il modulo
-        alert('Movimento registrato con successo!');
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+
+        setTimeout(function() {
+            notification.style.display = 'none';
+        }, 1000); // Nascondi dopo 1 secondo
+
         document.getElementById('registrazione-form').reset();
     });
 
@@ -142,8 +165,6 @@
         event.preventDefault();
         window.history.back();
     });
-</script>
-
-    
+    </script>
 </body>
 </html>

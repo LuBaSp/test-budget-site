@@ -14,7 +14,7 @@ body {
 /* Stile per il contenitore principale */
 .container {
     width: 100%;
-    max-width: 800px; /* Aumenta la larghezza massima del contenitore */
+    max-width: 200px; /* Aumenta la larghezza massima del contenitore */
     padding: 30px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;
@@ -26,6 +26,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 20px 0; /* Aggiungi margine per creare spazio sopra e sotto il contenitore */
+    min-height: 100vh; /* Imposta l’altezza minima del contenitore per garantire che non sia troppo piccolo */
 }
 
 /* Stile del titolo della pagina */
@@ -209,10 +211,10 @@ a {
     width: 100%;
     padding: 15px; /* Aumenta il padding per campi di input più grandi */
     border: 1px solid #555;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: #444;
+    border-radius: 8px; /* Angoli arrotondati per un aspetto più moderno */
+    background-color: #222;
     color: #fff;
+    box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
 .registrazione-page input[type="text"]:focus {

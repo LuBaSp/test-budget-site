@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione - Budget Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="registrazione-page">
+    <div class="container">
+        <h1 id="pagina-titolo">Registrazione</h1>
+        
+        <!-- Modulo di registrazione -->
+        <form id="registrazione-form" action="submit_data.php" method="post">
+            <div class="form-group">
+                <label for="importo">Importo:</label>
+                <input type="text" id="importo" name="importo" required autocomplete="off" placeholder="Inserisci l'importo" pattern="^[0-9]+([.,][0-9]+)?$" title="Inserisci un numero valido (può usare '.' o ',')">
+            </div>
+            
+            <div class="form-group">
+                <label for="descrizione">Descrizione (opzionale):</label>
+                <input type="text" id="descrizione" name="descrizione" autocomplete="off" placeholder="Inserisci una descrizione">
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+            </div>
+            
+            <button type="submit" class="submit-button">Registra</button>
+        </form>
+        
+        <!-- Link per tornare alla pagina precedente -->
+        <a href="#" class="back-button" id="back-link">INDIETRO</a>
+    </div>
+
+    <script>
+        // Funzione per ottenere i parametri della query string
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Recupera la categoria dalla query string
+        const categoria = getQueryParam('categoria');
+        const titolo = document.getElementById('pagina-titolo');
+        const backLink = document.getElementById('back-link');
+
+        if (categoria) {
+            // Imposta il titolo della pagina e il link di ritorno in base alla categoria
+            switch (categoria) {
+                case 'bonifici':
+                    titolo.textContent = 'Registrazione Bonifici';
+                    break;
+                case 'paypal':
+                    titolo.textContent = 'Registrazione PayPal';
+                    break;
+                case 'caffe':
+                    titolo.textContent = 'Registrazione Caffè';
+                    break;
+                case 'spesa':
+                    titolo.textContent = 'Registrazione Spesa';
+                    break;
+                // Aggiungi altri casi per le categorie di entrate e uscite
+                default:
+                    titolo.textContent = 'Registrazione';
+            }
+        }
+
+        // Imposta la data corrente come valore predefinito per il campo data
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data').value = today;
+        });
+
+        // Gestione dell'input dell'importo
+        document.getElementById('registrazione-form').addEventListener('submit', function(event) {
+            let importo = document.getElementById('importo').value;
+            // Sostituisce la virgola con il punto per il formato decimale
+            importo = importo.replace(',', '.');
+            document.getElementById('importo').value = importo;
+        });
+
+        // Imposta il comportamento del link "INDIETRO" per andare alla pagina precedente
+        document.getElementById('back-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

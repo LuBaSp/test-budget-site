@@ -1,77 +1,129 @@
-/* Tema Dark */
+/* Stile generale del corpo */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #121212; /* Colore di sfondo scuro */
+    color: #fff;
+    height: 100vh; /* Imposta l'altezza del body per occupare l'intera altezza della finestra */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
+/* Stile per il contenitore principale */
 .container {
-    text-align: center;
+    width: 90%;
+    max-width: 600px;
     padding: 20px;
-    background-color: #1e1e1e;
+    background-color: #333;
+    color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Stile per il titolo */
-h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-/* Stile dei pulsanti nella pagina principale e nelle pagine delle categorie */
-.buttons,
-.category-buttons {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
     display: flex;
-    flex-direction: column; /* Disposizione in colonna */
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center; /* Centro il testo all'interno del contenitore */
+}
+
+/* Stile del titolo della pagina */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Stile per il sottotitolo piccolo e sottile */
+.thin-subtitle {
+    font-size: 12px; /* Dimensione ridotta del testo del sottotitolo */
+    font-weight: 300; /* Peso del carattere più sottile */
+    color: #bbb; /* Colore leggermente più chiaro per il sottotitolo */
+    margin-top: -10px; /* Riduce lo spazio tra il titolo e il sottotitolo */
+}
+
+/* Contenitore dei pulsanti */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Spazio tra i pulsanti */
+    width: 100%;
     margin-top: 20px;
 }
 
-button {
-    font-size: 16px; /* Dimensione del testo */
-    font-weight: bold; /* Testo in grassetto */
-    letter-spacing: 1px; /* Spaziatura tra le lettere */
-    text-transform: uppercase; /* Testo maiuscolo */
+/* Stile dei pulsanti di categoria */
+.category {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* Smussamento dei bordi */
     cursor: pointer;
     color: #ffffff;
-    width: 200px; /* Larghezza fissa per tutti i pulsanti */
-    height: 50px; /* Altezza fissa per tutti i pulsanti */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animazione */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Ombra del pulsante */
-    margin: 10px 0; /* Spazio tra i pulsanti in colonna */
-    display: flex;
-    align-items: center; /* Allinea verticalmente il testo */
-    justify-content: center; /* Allinea orizzontalmente il testo */
+    background-color: #6c757d; /* Colore grigio per i pulsanti */
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    text-decoration: none; /* Rimuove la sottolineatura nei link */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
 }
 
-/* Pulsanti specifici per le pagine principali */
-button.entrate {
-    background-color: #28a745; /* Verde per Entrate */
+.category:hover {
+    background-color: #5a6268; /* Grigio scuro per l'hover */
+    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
 }
 
-button.uscite {
-    background-color: #dc3545; /* Rosso per Uscite */
+.category:active {
+    background-color: #4e555b; /* Grigio ancora più scuro per il click */
+    transform: translateY(1px); /* Effetto di pressione */
 }
 
-/* Pulsanti per categorie */
-.category {
-    background-color: #343a40; /* Colore di sfondo dei pulsanti */
+/* Pulsante di Entrate */
+.entrate-button {
+    background-color: #28a745; /* Verde per le entrate */
 }
 
-button:hover {
-    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Maggiore ombra al passaggio del mouse */
-    opacity: 0.95;
+.entrate-button:hover {
+    background-color: #218838; /* Verde scuro per l'hover */
+}
+
+/* Pulsante di Uscite */
+.uscite-button {
+    background-color: #dc3545; /* Rosso per le uscite */
+}
+
+.uscite-button:hover {
+    background-color: #c82333; /* Rosso scuro per l'hover */
+}
+
+/* Pulsante di invio */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745; /* Colore verde per il pulsante */
+    border: none;
+    border-radius: 8px; /* Smussamento dei bordi */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
+}
+
+.submit-button:hover {
+    background-color: #218838; /* Colore verde scuro per l'hover */
+    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
+}
+
+.submit-button:active {
+    background-color: #1e7e34; /* Colore verde ancora più scuro per il click */
+    transform: translateY(1px); /* Effetto di pressione */
 }
 
 /* Stile del link di ritorno */
@@ -81,13 +133,138 @@ a.back-button {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    color: #ffffff;
+    color: #fff;
     background-color: #007bff; /* Colore blu per il link */
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
+    text-decoration: none; /* Rimuove la sottolineatura dal link */
+    border-radius: 8px; /* Smussamento dei bordi */
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
 }
 
 a.back-button:hover {
     background-color: #0056b3; /* Colore blu scuro per l'hover */
+    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
+}
+
+a.back-button:active {
+    background-color: #003d7a; /* Colore blu ancora più scuro per il click */
+    transform: translateY(1px); /* Effetto di pressione */
+}
+
+/* Rimuove la sottolineatura dai link */
+a {
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+}
+
+/* Stili specifici per la pagina di registrazione */
+.registrazione-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Modifiche al contenitore della pagina di registrazione */
+.registrazione-page .container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Modifiche al titolo della pagina di registrazione */
+.registrazione-page h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Modifiche al modulo di registrazione */
+.registrazione-page #registrazione-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modifiche ai gruppi di campi del modulo */
+.registrazione-page .form-group {
+    margin-bottom: 15px;
+}
+
+.registrazione-page label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.registrazione-page input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #444;
+    color: #fff;
+}
+
+.registrazione-page input[type="text"]:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* Pulsante di invio nella pagina di registrazione */
+.registrazione-page .submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin-top: 20px; /* Distanza dal campo di input superiore */
+}
+
+.registrazione-page .submit-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.registrazione-page .submit-button:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+}
+
+/* Link di ritorno nella pagina di registrazione */
+.registrazione-page a.back-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.registrazione-page a.back-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.registrazione-page a.back-button:active {
+    background-color: #003d7a;
+    transform: translateY(1px);
 }

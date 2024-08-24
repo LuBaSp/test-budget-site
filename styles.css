@@ -268,3 +268,44 @@ a {
     background-color: #003d7a;
     transform: translateY(1px);
 }
+
+/* Modifica i pulsanti degli importi */
+.amount-button {
+    display: inline-block;
+    padding: 15px; /* Uniforma il padding per tutti i pulsanti */
+    margin: 5px; /* Spazio tra i pulsanti */
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #17a2b8;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    min-width: 200px; /* Imposta una larghezza minima uniforme per tutti i pulsanti */
+    display: flex; /* Usa flexbox per centrare il testo */
+    justify-content: center; /* Centro orizzontalmente il testo */
+    align-items: center; /* Centro verticalmente il testo */
+}
+
+/* Contenitore dei pulsanti degli importi */
+#amount-buttons {
+    display: flex;
+    flex-direction: column; /* Dispone i pulsanti in colonna */
+    align-items: center; /* Centro orizzontalmente i pulsanti */
+    margin-bottom: 40px; /* Margine inferiore per distanziare i pulsanti dal campo "Importo" */
+    margin-top: 20px; /* Margine superiore per centrare meglio i pulsanti */
+}
+
+/* Pulsante hover */
+.amount-button:hover {
+    background-color: #138496; /* Colore blu-turchese scuro per l'hover */
+    transform: translateY(-2px); /* Effetto di sollevamento */
+}
+
+/* Pulsante active */
+.amount-button:active {
+    background-color: #117a8b; /* Colore blu-turchese ancora più scuro per il click */
+    transform: translateY(1px); /* Effetto di pressione */
+}

@@ -14,7 +14,7 @@ body {
 /* Stile per il contenitore principale */
 .container {
     width: 100%;
-    max-width: 700px; /* Aumenta la larghezza massima del contenitore */
+    max-width: 800px; /* Aumenta la larghezza massima del contenitore */
     padding: 30px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;
@@ -27,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 20px 0; /* Aggiungi margine per creare spazio sopra e sotto il contenitore */
-    min-height: 100vh; /* Imposta l’altezza minima del contenitore per garantire che non sia troppo piccolo */
+    min-height: 50vh; /* Imposta l’altezza minima del contenitore per garantire che non sia troppo piccolo */
 }
 
 /* Stile del titolo della pagina */

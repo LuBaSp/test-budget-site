@@ -14,12 +14,12 @@ body {
 /* Stile per il contenitore principale */
 .container {
     width: 100%;
-    max-width: 600px; /* Imposta una larghezza massima per il contenitore */
-    padding: 20px;
+    max-width: 800px; /* Aumenta la larghezza massima del contenitore */
+    padding: 30px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Aumenta l'ombra per un effetto più marcato */
     text-align: center; /* Centro il testo all'interno del contenitore */
     box-sizing: border-box; /* Include il padding e il bordo nella larghezza e altezza totale */
     display: flex;
@@ -30,16 +30,16 @@ body {
 
 /* Stile del titolo della pagina */
 h1 {
-    margin-bottom: 10px;
-    font-size: 24px; /* Font-size ottimizzato per la leggibilità */
+    margin-bottom: 15px;
+    font-size: 28px; /* Aumenta la dimensione del font del titolo */
 }
 
 /* Stile per il sottotitolo piccolo e sottile */
 .thin-subtitle {
-    font-size: 12px; /* Dimensione ridotta del testo del sottotitolo */
+    font-size: 14px; /* Aumenta leggermente la dimensione del font del sottotitolo */
     font-weight: 300; /* Peso del carattere più sottile */
     color: #bbb; /* Colore leggermente più chiaro per il sottotitolo */
-    margin-top: -10px; /* Riduce lo spazio tra il titolo e il sottotitolo */
+    margin-top: -5px; /* Riduce lo spazio tra il titolo e il sottotitolo */
 }
 
 /* Contenitore dei pulsanti */
@@ -47,15 +47,15 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Spazio tra i pulsanti */
+    gap: 15px; /* Aumenta lo spazio tra i pulsanti */
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px; /* Aumenta lo spazio sopra i pulsanti */
 }
 
 /* Stile dei pulsanti di categoria */
 .category {
-    padding: 15px;
-    font-size: 16px;
+    padding: 20px; /* Aumenta il padding per pulsanti più grandi */
+    font-size: 18px; /* Aumenta la dimensione del font dei pulsanti */
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -66,10 +66,10 @@ h1 {
     background-color: #58595a; /* Colore grigio per i pulsanti */
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px; /* Aumenta la larghezza massima dei pulsanti */
     text-align: center; /* Centro il testo all'interno del pulsante */
     text-decoration: none; /* Rimuove la sottolineatura nei link */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* Aumenta l'ombra dei pulsanti */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
@@ -105,8 +105,8 @@ h1 {
 .submit-button {
     display: block;
     width: 100%;
-    padding: 15px;
-    font-size: 16px;
+    padding: 20px; /* Aumenta il padding per un pulsante più grande */
+    font-size: 18px; /* Aumenta la dimensione del font */
     font-weight: bold;
     color: #fff;
     background-color: #28a745; /* Colore verde per il pulsante */
@@ -115,7 +115,7 @@ h1 {
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* Aumenta l'ombra del pulsante */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
@@ -132,9 +132,9 @@ h1 {
 /* Stile del link di ritorno */
 a.back-button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-top: 30px; /* Aumenta lo spazio sopra il link di ritorno */
+    padding: 15px 25px; /* Aumenta il padding per un link più grande */
+    font-size: 18px; /* Aumenta la dimensione del font del link */
     font-weight: bold;
     color: #fff;
     background-color: #007bff; /* Colore blu per il link */
@@ -142,13 +142,13 @@ a.back-button {
     border-radius: 8px; /* Smussamento dei bordi */
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* Aumenta l'ombra del link */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
 a.back-button:hover {
     background-color: #0056b3; /* Colore blu scuro per l'hover */
-    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
+    transform: translateY(-2px); /* Solleva il link durante l'hover */
 }
 
 a.back-button:active {
@@ -172,19 +172,19 @@ a {
 /* Modifiche al contenitore della pagina di registrazione */
 .registrazione-page .container {
     width: 100%;
-    max-width: 600px; /* Imposta una larghezza massima per il contenitore */
-    padding: 20px;
+    max-width: 800px; /* Aumenta la larghezza massima del contenitore */
+    padding: 30px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Aumenta l'ombra per un effetto più marcato */
 }
 
 /* Modifiche al titolo della pagina di registrazione */
 .registrazione-page h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 24px; /* Font-size ottimizzato per la leggibilità */
+    font-size: 28px; /* Aumenta la dimensione del font del titolo */
 }
 
 /* Modifiche al modulo di registrazione */
@@ -207,7 +207,7 @@ a {
 
 .registrazione-page input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: 15px; /* Aumenta il padding per campi di input più grandi */
     border: 1px solid #555;
     border-radius: 8px;
     box-sizing: border-box;
@@ -225,9 +225,9 @@ a {
     display: inline-block; /* Per allineare i pulsanti orizzontalmente */
     background-color: #00bcd4; /* Colore azzurrino/verde acqua */
     color: white; /* Testo bianco per contrastare con lo sfondo */
-    padding: 10px 20px; /* Aumenta il padding per rendere i pulsanti più grandi */
+    padding: 15px 25px; /* Aumenta il padding per rendere i pulsanti più grandi */
     margin: 5px; /* Spazio tra i pulsanti */
-    border-radius: 5px; /* Angoli arrotondati per un aspetto più moderno */
+    border-radius: 8px; /* Angoli arrotondati per un aspetto più moderno */
     text-decoration: none; /* Rimuove la sottolineatura */
     text-align: center; /* Centro il testo all'interno del pulsante */
     cursor: pointer; /* Cambia il cursore al passaggio sopra il pulsante */
@@ -255,11 +255,11 @@ a {
 .visualizza-page .container {
     width: 100%;
     max-width: 100%;
-    padding: 15px;
+    padding: 20px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Aumenta l'ombra per un effetto più marcato */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
@@ -267,12 +267,12 @@ a {
 .visualizza-page table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Aumenta lo spazio sotto la tabella */
 }
 
 .visualizza-page th, .visualizza-page td {
     border: 1px solid #555;
-    padding: 10px;
+    padding: 15px; /* Aumenta il padding per celle più grandi */
     text-align: left;
 }
 
@@ -297,7 +297,7 @@ a {
 }
 
 .visualizza-page #totale {
-    margin-top: 20px;
+    margin-top: 30px; /* Aumenta lo spazio sopra il totale */
     text-align: center;
 }
 
@@ -308,9 +308,9 @@ a {
 /* Pulsante di ritorno nella pagina di visualizzazione */
 .visualizza-page a.back-button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-top: 30px; /* Aumenta lo spazio sopra il link di ritorno */
+    padding: 15px 25px; /* Aumenta il padding per un link più grande */
+    font-size: 18px; /* Aumenta la dimensione del font del link */
     font-weight: bold;
     color: #fff;
     background-color: #007bff; /* Colore blu per il link */
@@ -318,13 +318,13 @@ a {
     border-radius: 8px; /* Smussamento dei bordi */
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* Aumenta l'ombra del link */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
 .visualizza-page a.back-button:hover {
     background-color: #0056b3; /* Colore blu scuro per l'hover */
-    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
+    transform: translateY(-2px); /* Solleva il link durante l'hover */
 }
 
 .visualizza-page a.back-button:active {
@@ -335,40 +335,40 @@ a {
 /* Media queries per dispositivi mobili */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 15px; /* Aumenta leggermente il padding sui dispositivi più piccoli */
     }
 
     .category, .submit-button, a.back-button {
-        font-size: 14px;
-        padding: 12px;
+        font-size: 16px; /* Aumenta leggermente la dimensione del font */
+        padding: 15px; /* Aumenta il padding per pulsanti e link */
     }
 
     .amount-button {
-        font-size: 14px;
-        padding: 8px 16px;
+        font-size: 16px; /* Aumenta leggermente la dimensione del font */
+        padding: 10px 20px; /* Aumenta il padding per i pulsanti */
     }
 
     .visualizza-page th, .visualizza-page td {
-        padding: 8px;
+        padding: 10px; /* Aumenta il padding per celle più grandi */
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 5px;
+        padding: 10px; /* Aumenta leggermente il padding sui dispositivi molto piccoli */
     }
 
     .category, .submit-button, a.back-button {
-        font-size: 12px;
-        padding: 8px;
+        font-size: 14px; /* Dimensione del font più piccola per dispositivi molto piccoli */
+        padding: 12px; /* Riduci leggermente il padding */
     }
 
     .amount-button {
-        font-size: 12px;
-        padding: 6px 12px;
+        font-size: 14px; /* Dimensione del font più piccola per dispositivi molto piccoli */
+        padding: 8px 16px; /* Riduci leggermente il padding */
     }
 
     .visualizza-page th, .visualizza-page td {
-        padding: 6px;
+        padding: 8px; /* Riduci leggermente il padding per celle più piccole */
     }
 }

@@ -14,23 +14,22 @@ body {
 /* Stile per il contenitore principale */
 .container {
     width: 100%;
-    max-width: 100%; /* Garantisce che la larghezza non superi mai lo schermo del dispositivo */
-    padding: 15px; /* Ridotto per i dispositivi mobili */
+    max-width: 600px; /* Imposta una larghezza massima per il contenitore */
+    padding: 20px;
     background-color: #333;
     color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center; /* Centro il testo all'interno del contenitore */
+    box-sizing: border-box; /* Include il padding e il bordo nella larghezza e altezza totale */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Centro il testo all'interno del contenitore */
-    box-sizing: border-box; /* Include il padding e il bordo nella larghezza e altezza totale */
 }
 
 /* Stile del titolo della pagina */
 h1 {
-    text-align: center;
     margin-bottom: 10px;
     font-size: 24px; /* Font-size ottimizzato per la leggibilità */
 }
@@ -68,7 +67,7 @@ h1 {
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     max-width: 300px;
-    text-align: center;
+    text-align: center; /* Centro il testo all'interno del pulsante */
     text-decoration: none; /* Rimuove la sottolineatura nei link */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Ombra del pulsante */
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
@@ -173,8 +172,8 @@ a {
 /* Modifiche al contenitore della pagina di registrazione */
 .registrazione-page .container {
     width: 100%;
-    max-width: 100%;
-    padding: 15px;
+    max-width: 600px; /* Imposta una larghezza massima per il contenitore */
+    padding: 20px;
     background-color: #333;
     color: #fff;
     border-radius: 10px;
@@ -229,8 +228,8 @@ a {
     padding: 10px 20px; /* Aumenta il padding per rendere i pulsanti più grandi */
     margin: 5px; /* Spazio tra i pulsanti */
     border-radius: 5px; /* Angoli arrotondati per un aspetto più moderno */
-    text-decoration: none; /* Rimuove la sottolineatura dai pulsanti link */
-    text-align: center; /* Centro il testo */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    text-align: center; /* Centro il testo all'interno del pulsante */
     cursor: pointer; /* Cambia il cursore al passaggio sopra il pulsante */
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -264,6 +263,7 @@ a {
     box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
 }
 
+/* Stili per la tabella nella pagina di visualizzazione */
 .visualizza-page table {
     width: 100%;
     border-collapse: collapse;

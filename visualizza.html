@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizza Transazioni - Budget Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .remove-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body class="visualizza-page">
+    <div class="container">
+        <h1>Visualizza Transazioni</h1>
+        
+        <!-- Tabella delle transazioni -->
+        <table id="transazioni-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Categoria</th>
+                    <th>Descrizione</th>
+                    <th>Importo</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Le righe della tabella verranno aggiunte tramite JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Totale -->
+        <div id="totale">
+            <h2>Totale: <span id="totale-amount">€ 0.00</span></h2>
+        </div>
+
+        <!-- Link per tornare alla pagina principale -->
+        <a href="index.html" class="back-button">INDIETRO</a>
+    </div>
+
+    <script>
+        // Funzione per aggiornare la tabella e il totale
+        function aggiornaTabella() {
+            const tableBody = document.querySelector('#transazioni-table tbody');
+            const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            let totaleEntrate = 0;
+            let totaleUscite = 0;
+
+            // Pulisci la tabella
+            tableBody.innerHTML = '';
+
+            // Aggiungi le righe alla tabella
+            transactions.forEach((transazione, index) => {
+                const importo = parseFloat(transazione.importo);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transazione.data}</td>
+                    <td>${transazione.categoria}</td>
+                    <td>${transazione.descrizione || '-'}</td>
+                    <td>${importo >= 0 ? `€ ${importo.toFixed(2)}` : `€ -${Math.abs(importo).toFixed(2)}`}</td>
+                    <td><button class="remove-button" data-index="${index}">Rimuovi</button></td>
+                `;
+                tableBody.appendChild(row);
+
+                // Calcola i totali
+                if (importo >= 0) {
+                    totaleEntrate += importo;
+                } else {
+                    totaleUscite += importo;  // Le uscite sono già negative
+                }
+            });
+
+            // Calcola il totale netto (entrate - uscite)
+            const totaleNetto = totaleEntrate + totaleUscite; // totaleUscite è negativo, quindi sarà sottratto
+            document.getElementById('totale-amount').textContent = `€ ${totaleNetto.toFixed(2)}`;
+        }
+
+        // Funzione per rimuovere una transazione
+        function rimuoviTransazione(index) {
+            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.splice(index, 1); // Rimuove la transazione all'indice specificato
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            aggiornaTabella(); // Ricarica la tabella aggiornata
+        }
+
+        // Gestisce il clic sui pulsanti di rimozione
+        document.addEventListener('DOMContentLoaded', () => {
+            aggiornaTabella(); // Popola la tabella all'inizio
+
+            document.querySelector('#transazioni-table').addEventListener('click', event => {
+                if (event.target && event.target.classList.contains('remove-button')) {
+                    const index = event.target.getAttribute('data-index');
+                    rimuoviTransazione(index);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

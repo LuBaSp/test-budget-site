@@ -16,7 +16,8 @@
         </div>
         
         <!-- Modulo di registrazione -->
-        <form id="registrazione-form" action="submit_data.php" method="post">
+        <form id="registrazione-form">
+            <input type="hidden" id="categoria" name="categoria" value="">
             <div class="form-group">
                 <label for="importo">Importo:</label>
                 <input type="text" id="importo" name="importo" required autocomplete="off" placeholder="Inserisci l'importo" pattern="^[0-9]+([.,][0-9]+)?$" title="Inserisci un numero valido (può usare '.' o ',')">
@@ -35,75 +36,114 @@
             <button type="submit" class="submit-button">Registra</button>
         </form>
         
+        
         <!-- Link per tornare alla pagina precedente -->
         <a href="#" class="back-button" id="back-link">INDIETRO</a>
     </div>
 
     <script>
-        // Funzione per ottenere i parametri della query string
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-    
-        // Recupera la categoria dalla query string
-        const categoria = getQueryParam('categoria');
-        const titolo = document.getElementById('pagina-titolo');
-        const titleElement = document.getElementById('pagina-title');
-        const backLink = document.getElementById('back-link');
-        const amountButtonsContainer = document.getElementById('amount-buttons');
-    
-        const categoryAmounts = {
-            caffe: ['€ 0.33', '€ 0.40', '€ 0.57', '€ 0.60', '€ 0.90'],
-            abbonamenti: ['APPLE - € 2.99', 'AMAZON PRIME - € 4.99', 'NETFLIX - € 5.49'],
-            svago: ['ORDINE CIBO - € 5.00', 'ORDINE CIBO - € 5.50'],
-            trasporti: ['BIGLIETTO BUS - € 1.50', 'BIGLIETTO BUS - € 2.00'],
-        };
-    
-        function setAmountButtons(categoria) {
-            const amounts = categoryAmounts[categoria] || [];
-            amounts.forEach(amount => {
-                const button = document.createElement('a');
-                button.href = '#';
-                button.textContent = amount;
-                button.className = 'amount-button';
-                amountButtonsContainer.appendChild(button);
+    // Funzione per ottenere i parametri della query string
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Recupera la categoria dalla query string
+    const categoria = getQueryParam('categoria');
+    const titolo = document.getElementById('pagina-titolo');
+    const titleElement = document.getElementById('pagina-title');
+    const backLink = document.getElementById('back-link');
+    const amountButtonsContainer = document.getElementById('amount-buttons');
+
+    const categoryAmounts = {
+        caffe: ['€ 0.33', '€ 0.40', '€ 0.57', '€ 0.60', '€ 0.90'],
+        abbonamenti: ['APPLE - € 2.99', 'AMAZON PRIME - € 4.99', 'NETFLIX - € 5.49'],
+        svago: ['ORDINE CIBO - € 5.00', 'ORDINE CIBO - € 5.50'],
+        trasporti: ['BIGLIETTO BUS - € 1.50', 'BIGLIETTO BUS - € 2.00'],
+    };
+
+    function setAmountButtons(categoria) {
+        const amounts = categoryAmounts[categoria] || [];
+        amounts.forEach(amount => {
+            const button = document.createElement('a');
+            button.href = '#';
+            button.textContent = amount;
+            button.className = 'amount-button';
+            button.addEventListener('click', function() {
+                document.getElementById('importo').value = amount.split(' - ')[1]; // Estrai l'importo dal testo del pulsante
             });
-        }
-    
-        if (categoria) {
-            // Converti la categoria per il titolo
-            const categoriaCapitalized = categoria.charAt(0).toUpperCase() + categoria.slice(1);
-            const newTitle = `Registrazione ${categoriaCapitalized}`;
+            amountButtonsContainer.appendChild(button);
+        });
+    }
 
-            // Imposta il titolo della pagina e i pulsanti in base alla categoria
-            titolo.textContent = newTitle;
-            titleElement.textContent = `${newTitle} - Budget Management`;
+    if (categoria) {
+        // Converti la categoria per il titolo
+        const categoriaCapitalized = categoria.charAt(0).toUpperCase() + categoria.slice(1);
+        const newTitle = `Registrazione ${categoriaCapitalized}`;
 
-            // Setta i pulsanti in base alla categoria, se esistono valori predefiniti
-            setAmountButtons(categoria);
+        // Imposta il titolo della pagina e i pulsanti in base alla categoria
+        titolo.textContent = newTitle;
+        titleElement.textContent = `${newTitle} - Budget Management`;
+
+        // Setta i pulsanti in base alla categoria, se esistono valori predefiniti
+        setAmountButtons(categoria);
+        document.getElementById('categoria').value = categoria;
+    }
+
+    // Imposta la data corrente come valore predefinito per il campo data
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('data').value = today;
+    });
+
+    // Gestione dell'input dell'importo
+    document.getElementById('registrazione-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previene l'invio del modulo tradizionale
+
+        let importo = document.getElementById('importo').value;
+        importo = importo.replace(',', '.'); // Sostituisce la virgola con il punto per il formato decimale
+        document.getElementById('importo').value = importo;
+
+        // Recupera i valori dal modulo
+        const categoria = document.getElementById('categoria').value;
+        const descrizione = document.getElementById('descrizione').value;
+        const data = document.getElementById('data').value;
+
+        // Determina se la categoria è un'uscita e modifica l'importo di conseguenza
+        const uscitaCategorie = ['caffe', 'spesa', 'svago', 'bollette', 'abbonamenti', 'trasporti', 'ordini online', 'altro'];
+        if (uscitaCategorie.includes(categoria)) {
+            importo = (parseFloat(importo) * -1).toFixed(2); // Converti l'importo in negativo
         }
-    
-        // Imposta la data corrente come valore predefinito per il campo data
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('data').value = today;
-        });
-    
-        // Gestione dell'input dell'importo
-        document.getElementById('registrazione-form').addEventListener('submit', function(event) {
-            let importo = document.getElementById('importo').value;
-            // Sostituisce la virgola con il punto per il formato decimale
-            importo = importo.replace(',', '.');
-            document.getElementById('importo').value = importo;
-        });
-    
-        // Imposta il comportamento del link "INDIETRO" per andare alla pagina precedente
-        document.getElementById('back-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.history.back();
-        });
-    </script>
+
+        // Recupera l'array di movimenti dal Local Storage, se esiste
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+        // Crea un nuovo oggetto di transazione
+        const newTransaction = {
+            categoria,
+            importo,
+            descrizione,
+            data
+        };
+
+        // Aggiungi la nuova transazione all'array
+        transactions.push(newTransaction);
+
+        // Salva l'array aggiornato nel Local Storage
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+
+        // Mostra un messaggio di successo e resetta il modulo
+        alert('Movimento registrato con successo!');
+        document.getElementById('registrazione-form').reset();
+    });
+
+    // Imposta il comportamento del link "INDIETRO" per andare alla pagina precedente
+    document.getElementById('back-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        window.history.back();
+    });
+</script>
+
     
 </body>
 </html>

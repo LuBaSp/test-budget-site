@@ -62,7 +62,7 @@ h1 {
     border-radius: 8px; /* Smussamento dei bordi */
     cursor: pointer;
     color: #ffffff;
-    background-color: #6c757d; /* Colore grigio per i pulsanti */
+    background-color: #58595a; /* Colore grigio per i pulsanti */
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     max-width: 300px;
@@ -215,6 +215,40 @@ a {
     outline: none;
 }
 
+.amount-button {
+    display: inline-block; /* Per allineare i pulsanti orizzontalmente */
+    background-color: #00bcd4; /* Colore azzurrino/verde acqua */
+    color: white; /* Testo bianco per contrastare con lo sfondo */
+    padding: 10px 20px; /* Aumenta il padding per rendere i pulsanti più grandi */
+    margin: 5px; /* Spazio tra i pulsanti */
+    border-radius: 5px; /* Angoli arrotondati per un aspetto più moderno */
+    text-decoration: none; /* Rimuove la sottolineatura dai pulsanti */
+    text-align: center; /* Allinea il testo al centro del pulsante */
+    font-size: 16px; /* Imposta una dimensione del font leggibile */
+    font-weight: bold; /* Testo in grassetto per maggior visibilità */
+    transition: background-color 0.3s ease; /* Transizione fluida per il cambiamento di colore */
+}
+
+/* Alza i pulsanti verso il titolo */
+#amount-buttons {
+    margin-bottom: 20px; /* Aumenta lo spazio sotto i pulsanti */
+    margin-top: -10px; /* Riduci lo spazio sopra i pulsanti per alzarli verso il titolo */
+    display: flex; /* Usa Flexbox per l'allineamento dei pulsanti */
+    flex-wrap: wrap; /* Permette ai pulsanti di andare a capo se non c'è spazio */
+    gap: 10px; /* Spazio tra i pulsanti */
+}
+
+
+.amount-button:hover {
+    background-color: #16a085; /* Verde acqua scuro per l'hover */
+    transform: translateY(-2px); /* Solleva il pulsante durante l'hover */
+}
+
+.amount-button:active {
+    background-color: #1e8c8c; /* Verde acqua ancora più scuro per il click */
+    transform: translateY(1px); /* Effetto di pressione */
+}
+
 /* Pulsante di invio nella pagina di registrazione */
 .registrazione-page .submit-button {
     display: block;
@@ -269,43 +303,80 @@ a {
     transform: translateY(1px);
 }
 
-/* Modifica i pulsanti degli importi */
-.amount-button {
+/* Stili specifici per la pagina di visualizzazione delle transazioni */
+.visualizza-page .container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.visualizza-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.visualizza-page th, .visualizza-page td {
+    border: 1px solid #555;
+    padding: 15px;
+    text-align: left;
+}
+
+.visualizza-page th {
+    background-color: #444;
+}
+
+.visualizza-page tr:nth-child(even) {
+    background-color: #444;
+}
+
+.visualizza-page tr:nth-child(odd) {
+    background-color: #333;
+}
+
+.visualizza-page td {
+    text-align: center;
+}
+
+.visualizza-page th {
+    font-weight: bold;
+}
+
+.visualizza-page #totale {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.visualizza-page #totale h2 {
+    margin: 0;
+}
+
+/* Pulsante di ritorno nella pagina di visualizzazione */
+.visualizza-page a.back-button {
     display: inline-block;
-    padding: 15px; /* Uniforma il padding per tutti i pulsanti */
-    margin: 5px; /* Spazio tra i pulsanti */
+    margin-top: 20px;
+    padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #17a2b8;
+    background-color: #007bff;
     text-decoration: none;
     border-radius: 8px;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    min-width: 200px; /* Imposta una larghezza minima uniforme per tutti i pulsanti */
-    display: flex; /* Usa flexbox per centrare il testo */
-    justify-content: center; /* Centro orizzontalmente il testo */
-    align-items: center; /* Centro verticalmente il testo */
 }
 
-/* Contenitore dei pulsanti degli importi */
-#amount-buttons {
-    display: flex;
-    flex-direction: column; /* Dispone i pulsanti in colonna */
-    align-items: center; /* Centro orizzontalmente i pulsanti */
-    margin-bottom: 40px; /* Margine inferiore per distanziare i pulsanti dal campo "Importo" */
-    margin-top: 20px; /* Margine superiore per centrare meglio i pulsanti */
+.visualizza-page a.back-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* Pulsante hover */
-.amount-button:hover {
-    background-color: #138496; /* Colore blu-turchese scuro per l'hover */
-    transform: translateY(-2px); /* Effetto di sollevamento */
-}
-
-/* Pulsante active */
-.amount-button:active {
-    background-color: #117a8b; /* Colore blu-turchese ancora più scuro per il click */
-    transform: translateY(1px); /* Effetto di pressione */
+.visualizza-page a.back-button:active {
+    background-color: #003d7a;
+    transform: translateY(1px);
 }

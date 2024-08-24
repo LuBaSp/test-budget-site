@@ -14,7 +14,7 @@ body {
 /* Stile per il contenitore principale */
 .container {
     width: 100%;
-    max-width: 200px; /* Aumenta la larghezza massima del contenitore */
+    max-width: 700px; /* Aumenta la larghezza massima del contenitore */
     padding: 30px; /* Aumenta il padding per dare più spazio interno */
     background-color: #333;
     color: #fff;

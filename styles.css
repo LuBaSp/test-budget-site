@@ -32,7 +32,7 @@ body {
 
 /* Stile del titolo della pagina */
 h1 {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 28px; /* Aumenta la dimensione del font del titolo */
 }
 
@@ -49,9 +49,9 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Aumenta lo spazio tra i pulsanti */
+    gap: 10px; /* Aumenta lo spazio tra i pulsanti */
     width: 100%;
-    margin-top: 30px; /* Aumenta lo spazio sopra i pulsanti */
+    margin-top: 10px; /* Aumenta lo spazio sopra i pulsanti */
 }
 
 /* Stile dei pulsanti di categoria */
@@ -197,7 +197,7 @@ a {
 
 /* Modifiche ai gruppi di campi del modulo */
 .registrazione-page .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 
 .registrazione-page label {
@@ -209,7 +209,7 @@ a {
 
 .registrazione-page input[type="text"] {
     width: 100%;
-    padding: 15px; /* Aumenta il padding per campi di input più grandi */
+    padding: 10px; /* Aumenta il padding per campi di input più grandi */
     border: 1px solid #555;
     border-radius: 8px; /* Angoli arrotondati per un aspetto più moderno */
     background-color: #222;
@@ -274,8 +274,9 @@ a {
 
 .visualizza-page th, .visualizza-page td {
     border: 1px solid #555;
-    padding: 15px; /* Aumenta il padding per celle più grandi */
-    text-align: left;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle; /* Aggiungi questa riga per l'allineamento verticale */
 }
 
 .visualizza-page th {
@@ -373,4 +374,11 @@ a {
     .visualizza-page th, .visualizza-page td {
         padding: 8px; /* Riduci leggermente il padding per celle più piccole */
     }
+}
+
+.mese-nome{
+    color:white;
+}
+.mese-nome:hover {
+    color: #bbb; /* Colore leggermente più chiaro per l'hover */
 }

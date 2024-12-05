@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio Mese - Budget Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dettaglio Mese</h1>
+        <canvas id="istogramma-mese" width="400" height="200"></canvas>
+        <a href="visualizza.html" class="back-button">INDIETRO</a>
+    </div>
+
+    <script>
+        // Ottieni il mese selezionato dai parametri URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const meseSelezionato = parseInt(urlParams.get('mese')) || new Date().getMonth();
+
+        // Ottieni le transazioni dal LocalStorage
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+        // Filtra le transazioni per il mese selezionato
+        const transazioniMese = transactions.filter(transazione => {
+            const data = new Date(transazione.data);
+            return data.getMonth() === meseSelezionato;
+        });
+
+        // Calcola entrate e uscite
+        const categorieEntrate = [];
+        const importiEntrate = [];
+        const categorieUscite = [];
+        const importiUscite = [];
+
+        transazioniMese.forEach(transazione => {
+            const importo = parseFloat(transazione.importo);
+            const categoria = transazione.categoria;
+
+            if (importo >= 0) {
+                // Entrate
+                const index = categorieEntrate.indexOf(categoria);
+                if (index === -1) {
+                    categorieEntrate.push(categoria);
+                    importiEntrate.push(importo);
+                } else {
+                    importiEntrate[index] += importo;
+                }
+            } else {
+                // Uscite
+                const index = categorieUscite.indexOf(categoria);
+                if (index === -1) {
+                    categorieUscite.push(categoria);
+                    importiUscite.push(Math.abs(importo));
+                } else {
+                    importiUscite[index] += Math.abs(importo);
+                }
+            }
+        });
+
+        // Unisci le categorie entrate e uscite
+        const tutteLeCategorie = Array.from(new Set([...categorieEntrate, ...categorieUscite]));
+
+        // Allinea gli importi alle categorie unificate
+        const datiEntrate = tutteLeCategorie.map(categoria => {
+            const index = categorieEntrate.indexOf(categoria);
+            return index !== -1 ? importiEntrate[index] : 0;
+        });
+
+        const datiUscite = tutteLeCategorie.map(categoria => {
+            const index = categorieUscite.indexOf(categoria);
+            return index !== -1 ? importiUscite[index] : 0;
+        });
+
+        // Configura il grafico
+        const ctx = document.getElementById('istogramma-mese').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: tutteLeCategorie,
+                datasets: [
+                    {
+                        label: 'Entrate',
+                        data: datiEntrate,
+                        backgroundColor: 'green'
+                    },
+                    {
+                        label: 'Uscite',
+                        data: datiUscite,
+                        backgroundColor: 'red'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Dettaglio Mese'
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Categorie'
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0, // Impedisce la rotazione dei tick
+                            minRotation: 0
+                        },
+                        // Centrare le etichette
+                        offset: true,
+                        grid: {
+                            display: false // Nascondi la griglia sull'asse X
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

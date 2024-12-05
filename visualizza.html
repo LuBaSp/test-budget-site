@@ -16,27 +16,73 @@
         .remove-button:hover {
             background-color: #c0392b;
         }
+        .mese {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+        .mese span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Stile per abilitare lo scroll verticale solo nella tabella */
+        #transazioni-table-wrapper {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        #transazioni-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #transazioni-table th, #transazioni-table td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* Aggiungi uno stile per i pulsanti mese */
+        .mese a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .mese a:hover {
+            color: #2980b9;
+        }
     </style>
 </head>
 <body class="visualizza-page">
     <div class="container">
-        <h1>Visualizza Transazioni</h1>
+        <h1>Storico Transazioni</h1>
         
-        <!-- Tabella delle transazioni -->
-        <table id="transazioni-table">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Categoria</th>
-                    <th>Descrizione</th>
-                    <th>Importo</th>
-                    <th>Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Le righe della tabella verranno aggiunte tramite JavaScript -->
-            </tbody>
-        </table>
+        <!-- Visualizzazione per mese -->
+        <div id="mesi-container">
+            <!-- I mesi e i relativi importi verranno aggiunti qui tramite JavaScript -->
+        </div>
+
+        <!-- Wrapper per la tabella, con scroll abilitato -->
+        <div id="transazioni-table-wrapper">
+            <table id="transazioni-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Categoria</th>
+                        <th>Descrizione</th>
+                        <th>Importo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Le righe della tabella verranno aggiunte tramite JavaScript -->
+                </tbody>
+            </table>
+        </div>
 
         <!-- Totale -->
         <div id="totale">
@@ -48,19 +94,26 @@
     </div>
 
     <script>
-        // Funzione per aggiornare la tabella e il totale
+        // Funzione per aggiornare la tabella e il patrimonio per mese
         function aggiornaTabella() {
             const tableBody = document.querySelector('#transazioni-table tbody');
+            const mesiContainer = document.getElementById('mesi-container');
             const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-            let totaleEntrate = 0;
-            let totaleUscite = 0;
+            const spesePerMese = Array(12).fill(0);  // Array per memorizzare le spese per mese
 
-            // Pulisci la tabella
+            // Pulisci la tabella e i mesi
             tableBody.innerHTML = '';
+            mesiContainer.innerHTML = '';
 
             // Aggiungi le righe alla tabella
             transactions.forEach((transazione, index) => {
                 const importo = parseFloat(transazione.importo);
+                const data = new Date(transazione.data);
+                const mese = data.getMonth(); // Ottieni il mese dalla data (0-11)
+
+                // Aggiungi l'importo alle spese per il mese corrispondente
+                spesePerMese[mese] += importo;
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${transazione.data}</td>
@@ -70,17 +123,35 @@
                     <td><button class="remove-button" data-index="${index}">Rimuovi</button></td>
                 `;
                 tableBody.appendChild(row);
+            });
 
-                // Calcola i totali
+            // Aggiorna la visualizzazione per mese
+            const mesiNomi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+            mesiNomi.forEach((mese, index) => {
+                const meseDiv = document.createElement('div');
+                meseDiv.classList.add('mese');
+                meseDiv.innerHTML = ` 
+                    <a href="dettaglio_mese.html?mese=${index}">
+                        <strong class="mese-nome">${mese}</strong>
+                    </a>
+                    <span>€ ${spesePerMese[index].toFixed(2)}</span>
+                `;
+                mesiContainer.appendChild(meseDiv);
+            });
+
+
+            // Calcola il totale netto (entrate - uscite)
+            let totaleEntrate = 0;
+            let totaleUscite = 0;
+            transactions.forEach(transazione => {
+                const importo = parseFloat(transazione.importo);
                 if (importo >= 0) {
                     totaleEntrate += importo;
                 } else {
-                    totaleUscite += importo;  // Le uscite sono già negative
+                    totaleUscite += importo;
                 }
             });
-
-            // Calcola il totale netto (entrate - uscite)
-            const totaleNetto = totaleEntrate + totaleUscite; // totaleUscite è negativo, quindi sarà sottratto
+            const totaleNetto = totaleEntrate + totaleUscite;
             document.getElementById('totale-amount').textContent = `€ ${totaleNetto.toFixed(2)}`;
         }
 

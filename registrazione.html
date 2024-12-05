@@ -33,12 +33,12 @@
             <input type="hidden" id="categoria" name="categoria" value="">
             <div class="form-group">
                 <label for="importo">Importo:</label>
-                <input type="text" id="importo" name="importo" required autocomplete="off" placeholder="Inserisci l'importo" pattern="^[0-9]+([.,][0-9]+)?$" title="Inserisci un numero valido (può usare '.' o ',')">
+                <input type="text" id="importo" name="importo" required autocomplete="off" placeholder="Inserisci l'importo" pattern="^[0-9]+([.,][0-9]+)?$" title="Inserisci un numero valido (può usare '.' o ',')" style="text-align: center;">
             </div>
             
             <div class="form-group">
                 <label for="descrizione">Descrizione (opzionale):</label>
-                <input type="text" id="descrizione" name="descrizione" autocomplete="off" placeholder="Inserisci una descrizione">
+                <input type="text" id="descrizione" name="descrizione" autocomplete="off" placeholder="Inserisci una descrizione" style="text-align: center;">
             </div>
 
             <div class="form-group">
@@ -127,7 +127,7 @@
         const data = document.getElementById('data').value;
 
         // Determina se la categoria è un'uscita e modifica l'importo di conseguenza
-        const uscitaCategorie = ['caffe', 'spesa', 'svago', 'bollette', 'abbonamenti', 'trasporti', 'ordini online', 'altro'];
+        const uscitaCategorie = ['caffe', 'spesa', 'svago', 'bollette', 'abbonamenti', 'trasporti', 'acquisti online', 'altro'];
         if (uscitaCategorie.includes(categoria)) {
             importo = (parseFloat(importo) * -1).toFixed(2); // Converti l'importo in negativo
         }
@@ -149,7 +149,7 @@
         // Salva l'array aggiornato nel Local Storage
         localStorage.setItem('transactions', JSON.stringify(transactions));
 
-        // Mostra un messaggio di successo e resetta il modulo
+        // Mostra un messaggio di successo
         const notification = document.getElementById('notification');
         notification.style.display = 'block';
 
@@ -157,7 +157,7 @@
             notification.style.display = 'none';
         }, 1000); // Nascondi dopo 1 secondo
 
-        document.getElementById('registrazione-form').reset();
+        // Non resettiamo il modulo, quindi la data e gli altri campi rimarranno
     });
 
     // Imposta il comportamento del link "INDIETRO" per andare alla pagina precedente

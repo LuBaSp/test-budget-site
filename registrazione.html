@@ -23,7 +23,6 @@
     <div class="container">
         <h1 id="pagina-titolo">Registrazione</h1>
         
-        <!-- Nuovi pulsanti per importi -->
         <div id="amount-buttons" class="button-container">
             <!-- Pulsanti per importi -->
         </div>
@@ -45,14 +44,12 @@
                 <label for="data">Data:</label>
                 <input type="date" id="data" name="data" required>
             </div>
-            
+
             <button type="submit" class="submit-button">Registra</button>
         </form>
 
-        <!-- Notifica di successo -->
         <div id="notification" class="notification">Movimento registrato con successo!</div>
         
-        <!-- Link per tornare alla pagina precedente -->
         <a href="#" class="back-button" id="back-link">INDIETRO</a>
     </div>
 
@@ -82,10 +79,9 @@
         amounts.forEach(amount => {
             const button = document.createElement('a');
             button.href = '#';
-            button.textContent = amount; // Mostra il testo completo sul pulsante
+            button.textContent = amount; 
             button.className = 'amount-button';
             button.addEventListener('click', function() {
-                // Estrai solo la parte numerica dall'importo
                 const numericValue = amount.match(/[\d,.]+/)[0];
                 document.getElementById('importo').value = numericValue;
             });
@@ -94,48 +90,43 @@
     }
 
     if (categoria) {
-        // Converti la categoria per il titolo
         const categoriaCapitalized = categoria.charAt(0).toUpperCase() + categoria.slice(1);
         const newTitle = `Registrazione ${categoriaCapitalized}`;
-
-        // Imposta il titolo della pagina e i pulsanti in base alla categoria
         titolo.textContent = newTitle;
         titleElement.textContent = `${newTitle} - Budget Management`;
 
-        // Setta i pulsanti in base alla categoria, se esistono valori predefiniti
         setAmountButtons(categoria);
         document.getElementById('categoria').value = categoria;
     }
 
-    // Imposta la data corrente come valore predefinito per il campo data
     document.addEventListener('DOMContentLoaded', function() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('data').value = today;
     });
 
-    // Gestione dell'input dell'importo
     document.getElementById('registrazione-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Previene l'invio del modulo tradizionale
+        event.preventDefault();
 
         let importo = document.getElementById('importo').value;
-        importo = importo.replace(',', '.'); // Sostituisce la virgola con il punto per il formato decimale
+        importo = importo.replace(',', '.');
         document.getElementById('importo').value = importo;
 
-        // Recupera i valori dal modulo
         const categoria = document.getElementById('categoria').value;
         const descrizione = document.getElementById('descrizione').value;
         const data = document.getElementById('data').value;
 
-        // Determina se la categoria è un'uscita e modifica l'importo di conseguenza
         const uscitaCategorie = ['caffe', 'spesa', 'svago', 'bollette', 'abbonamenti', 'trasporti', 'acquisti online', 'altro'];
+        
+        const importoNumerico = parseFloat(importo);
+
         if (uscitaCategorie.includes(categoria)) {
-            importo = (parseFloat(importo) * -1).toFixed(2); // Converti l'importo in negativo
+            importo = (importoNumerico * -1).toFixed(2); // È un'uscita, rendila negativa
+        } else {
+            importo = importoNumerico.toFixed(2); // È un'entrata, mantienila positiva
         }
 
-        // Recupera l'array di movimenti dal Local Storage, se esiste
         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
-        // Crea un nuovo oggetto di transazione
         const newTransaction = {
             categoria,
             importo,
@@ -143,24 +134,17 @@
             data
         };
 
-        // Aggiungi la nuova transazione all'array
         transactions.push(newTransaction);
-
-        // Salva l'array aggiornato nel Local Storage
         localStorage.setItem('transactions', JSON.stringify(transactions));
 
-        // Mostra un messaggio di successo
         const notification = document.getElementById('notification');
         notification.style.display = 'block';
 
         setTimeout(function() {
             notification.style.display = 'none';
-        }, 1000); // Nascondi dopo 1 secondo
-
-        // Non resettiamo il modulo, quindi la data e gli altri campi rimarranno
+        }, 1000);
     });
 
-    // Imposta il comportamento del link "INDIETRO" per andare alla pagina precedente
     document.getElementById('back-link').addEventListener('click', function(event) {
         event.preventDefault();
         window.history.back();
